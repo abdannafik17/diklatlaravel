@@ -18,7 +18,7 @@
             <span class="nav-link-text">Siswa</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="About" active open>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="About" color>
           <a class="nav-link" href="{{ url('about') }}">
             <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">About</span>

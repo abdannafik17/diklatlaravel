@@ -11,14 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.homepage');
-});
 
-Route::get('siswa', function () {
-    return view('siswa.index');
-});
+Route::get('/', 'HomepageController@index');
 
-Route::get('about', function () {
-    return view('about.index');
-});
+Route::post('siswa', 'SiswaController@store');
+Route::get('siswa/create', 'SiswaController@create');
+Route::get('siswa/{siswa}', 'SiswaController@show');
+Route::get('siswa', 'SiswaController@index');
+
+Route::get('about', 'AboutController@index');
