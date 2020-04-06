@@ -1,6 +1,6 @@
 @extends('template.index')
 
-@section('title', 'Halaman Siswa')
+@section('title', 'Halaman Tambah Data Siswa')
 
 @section('main')
 	<div class="container-fluid">
