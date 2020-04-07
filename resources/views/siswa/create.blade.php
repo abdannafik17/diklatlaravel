@@ -22,22 +22,37 @@
             <div class="form-group col-md-12">
                 <label class="control-label">NISN :</label>
                 <input type="text" name="nisn" class="form-control" style="text-transform: uppercase" placeholder="NISN" >
+                @if($errors->has('nisn'))
+                  <span style="color:red"> {{ $errors->first('nisn') }} </span>
+                @endif
             </div>
             <div class="form-group col-md-12">
                 <label class="control-label">Nama Depan :</label>
                 <input type="text" name="nama_depan" class="form-control" style="text-transform: uppercase" placeholder="Nama Depan" >
+                @if($errors->has('nama_depan'))
+                  <span style="color:red"> {{ $errors->first('nama_depan') }} </span>
+                @endif
             </div>
             <div class="form-group col-md-12">
                 <label class="control-label">Nama Akhir :</label>
                 <input type="text" name="nama_akhir" class="form-control" style="text-transform: uppercase" placeholder="Nama Akhir" >
+                @if($errors->has('nama_akhir'))
+                  <span style="color:red"> {{ $errors->first('nama_akhir') }} </span>
+                @endif
             </div>
             <div class="form-group col-md-12">
                 <label class="control-label">Tempat Lahir :</label>
                 <input type="text" name="tempat_lahir" class="form-control" style="text-transform: uppercase" placeholder="Tempat Lahir" >
+                @if($errors->has('tempat_lahir'))
+                  <span style="color:red"> {{ $errors->first('tempat_lahir') }} </span>
+                @endif
             </div>
             <div class="form-group col-md-12">
                 <label class="control-label">Tanggal Lahir :</label>
                 <input type="text" name="tanggal_lahir" class="form-control" style="text-transform: uppercase" placeholder="Tanggal Lahir" >
+                @if($errors->has('tanggal_lahir'))
+                  <span style="color:red"> {{ $errors->first('tanggal_lahir') }} </span>
+                @endif
             </div>
             <div class="form-group col-md-12">
                 <label class="control-label">Jenis Kelamin :</label>
@@ -46,9 +61,12 @@
                   <option value="L">Laki Laki</option>
                   <option value="P">Perempuan</option>
                 </select>
+                @if($errors->has('jenis_kelamin'))
+                  <span style="color:red"> {{ $errors->first('jenis_kelamin') }} </span>
+                @endif
             </div>
             <div class="form-group col-md-12">
-                <button type="submit" class="btn btn-primary btn-circle" style="float: right"> Simpan </button>
+                <button type="submit" class="btn btn-primary btn-circle"> Simpan </button>
             </div>
           </form>
         </div>

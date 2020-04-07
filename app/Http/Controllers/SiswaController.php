@@ -38,6 +38,15 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
+        $input = $request->all();
+        $this->validate($request, [
+            'nisn' => 'required|string|size:4|unique:siswa,nisn',
+            'nama_depan' => 'required|string|max:50',
+            'nama_akhir' => 'required|string|max:50',
+            'tempat_lahir' => 'required|string|max:50',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:L,P',
+        ]);
         Siswa::create($request->all()); 
         return redirect('siswa');
     }
