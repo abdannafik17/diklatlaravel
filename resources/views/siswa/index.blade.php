@@ -31,6 +31,7 @@
                   <th>Tanggal Lahir</th>
                   <th>Tempat Lahir</th>
                   <th>Tanggal Lahir</th>
+                  <th>Jns Kelamim</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -42,12 +43,21 @@
                   <td>{{ $anak->nama_depan }}</td>
                   <td>{{ $anak->nama_akhir }}</td>
                   <td>{{ $anak->tempat_lahir }}</td>
-                  <td>{{ $anak->tanggal_lahir }}</td>
+                  <td>{{ $anak->tanggal_lahir->format('d M Y') }}</td>
+                  <td>{{ $anak->jenis_kelamin }}</td>
+                  <form method="post" action="{{ url('siswa/'.$anak->id_siswa) }}">
                   <td>
                     <a href="{{ url('siswa/'.$anak->id_siswa) }}" >
                       <button type="button" class="btn btn-circle btn-primary">Detail</button>
                     </a>
+                    <a href="{{ url('siswa/'.$anak->id_siswa.'/edit') }}" >
+                      <button type="button" class="btn btn-circle btn-success">Edit</button>
+                    </a>
+                    
+                      {{ csrf_field() }}
+                      <button type="submit" name="_method" value="delete" class="btn btn-circle btn-danger">Delete</button>
                   </td>
+                  </form>
                 </tr>
                 @endforeach
               </tbody>

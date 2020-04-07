@@ -26,7 +26,8 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('siswa.create');
+        $judul = 'Tambah Data Siswa';
+        return view('siswa.create', compact('judul'));
     }
 
     /**
@@ -37,7 +38,7 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        Siswa::create($request->all());
+        Siswa::create($request->all()); 
         return redirect('siswa');
     }
 
@@ -49,7 +50,7 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        $siswa = Siswa::findOrFail($id);
+        $siswa = Siswa::findOrFail($id); //select * from siswa where id_siswa=$id
         return view('siswa.show', compact('siswa'));
     }
 
@@ -61,7 +62,9 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $siswa = Siswa::findOrFail($id);
+        $judul = 'Edit Data Siswa';
+        return view('siswa.edit', compact('siswa', 'judul'));
     }
 
     /**
@@ -73,7 +76,9 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $siswa = Siswa::findOrFail($id);
+        $siswa->update($request->all());
+        return redirect('siswa');
     }
 
     /**
@@ -84,6 +89,7 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $siswa = Siswa::whereIdSiswa($id)->delete();
+        return redirect('siswa');
     }
 }

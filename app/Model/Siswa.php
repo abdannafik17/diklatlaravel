@@ -12,4 +12,6 @@ class Siswa extends Model
     protected $fillable = [
     	'nisn', 'nama_depan', 'nama_akhir', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin'
     ];
+
+    protected $dates = ['tanggal_lahir'];
 }

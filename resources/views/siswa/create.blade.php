@@ -13,7 +13,7 @@
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Halaman Tambah Data Siswa
+          <i class="fa fa-table"></i> {{ $judul }}
         </div>
           
         <div class="card-body">
