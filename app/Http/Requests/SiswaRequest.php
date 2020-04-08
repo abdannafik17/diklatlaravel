@@ -13,7 +13,7 @@ class SiswaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,27 @@ class SiswaRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+
+        if($this->method() == 'PATCH') {
+            return [
+                'nisn' => 'required|string|size:4|unique:siswa,nisn,'.$this->get('id_siswa').',id_siswa',
+                'nama_depan' => 'required|string|max:50',
+                'nama_akhir' => 'required|string|max:50',
+                'tempat_lahir' => 'required|string|max:50',
+                'tanggal_lahir' => 'required|date',
+                'jenis_kelamin' => 'required|in:L,P',
+            ];
+            
+        } else {
+            return [
+                'nisn' => $nisn_rules,
+                'nama_depan' => 'required|string|max:50',
+                'nama_akhir' => 'required|string|max:50',
+                'tempat_lahir' => 'required|string|max:50',
+                'tanggal_lahir' => 'required|date',
+                'jenis_kelamin' => 'required|in:L,P',
+            ];
+        }
+        
     }
 }

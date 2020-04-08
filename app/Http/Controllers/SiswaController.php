@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+use App\Http\Requests\SiswaRequest;
 use Session;
 
 use App\Model\Siswa;
@@ -38,18 +39,19 @@ class SiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SiswaRequest $request)
     {
         $input = $request->all();
-        $this->validate($request, [
-            'nisn' => 'required|string|size:4|unique:siswa,nisn',
-            'nama_depan' => 'required|string|max:50',
-            'nama_akhir' => 'required|string|max:50',
-            'tempat_lahir' => 'required|string|max:50',
-            'tanggal_lahir' => 'required|date',
-            'jenis_kelamin' => 'required|in:L,P',
-        ]);
+        // $this->validate($request, [
+        //     'nisn' => 'required|string|size:4|unique:siswa,nisn',
+        //     'nama_depan' => 'required|string|max:50',
+        //     'nama_akhir' => 'required|string|max:50',
+        //     'tempat_lahir' => 'required|string|max:50',
+        //     'tanggal_lahir' => 'required|date',
+        //     'jenis_kelamin' => 'required|in:L,P',
+        // ]);
         Siswa::create($request->all()); 
+        Session::flash('flash_message','Data Siswa dengan NISN '.$request->input('nisn').' Berhasil ditambah');
         return redirect('siswa');
     }
 
@@ -85,19 +87,19 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SiswaRequest $request, $id)
     {
         $siswa = Siswa::findOrFail($id);
         $input = $request->input();
-        // dd($input);
-        $this->validate($request, [
-            'nisn' => 'required|string|size:4|unique:siswa,nisn,'.$request->input('id_siswa').',id_siswa',
-            'nama_depan' => 'required|string|max:50',
-            'nama_akhir' => 'required|string|max:50',
-            'tempat_lahir' => 'required|string|max:50',
-            'tanggal_lahir' => 'required|date',
-            'jenis_kelamin' => 'required|in:L,P',
-        ]);
+        
+        // $this->validate($request, [
+        //     'nisn' => 'required|string|size:4|unique:siswa,nisn,'.$request->input('id_siswa').',id_siswa',
+        //     'nama_depan' => 'required|string|max:50',
+        //     'nama_akhir' => 'required|string|max:50',
+        //     'tempat_lahir' => 'required|string|max:50',
+        //     'tanggal_lahir' => 'required|date',
+        //     'jenis_kelamin' => 'required|in:L,P',
+        // ]);
         
         $siswa->update($request->all());
         Session::flash('flash_message','Data Siswa dengan NISN '.$request->input('nisn').' Berhasil diedit');
