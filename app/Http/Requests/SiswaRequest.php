@@ -25,25 +25,21 @@ class SiswaRequest extends FormRequest
     {
 
         if($this->method() == 'PATCH') {
-            return [
-                'nisn' => 'required|string|size:4|unique:siswa,nisn,'.$this->get('id_siswa').',id_siswa',
-                'nama_depan' => 'required|string|max:50',
-                'nama_akhir' => 'required|string|max:50',
-                'tempat_lahir' => 'required|string|max:50',
-                'tanggal_lahir' => 'required|date',
-                'jenis_kelamin' => 'required|in:L,P',
-            ];
+            $nisn_rules    = 'required|string|size:4|unique:siswa,nisn,'.$this->get('id_siswa').',id_siswa';
+            $telepon_rules = 'required|numeric|digits_between:10,15|unique:telepon,no_telepon,'.$this->get('id_siswa').',id_siswa';
             
         } else {
-            return [
+            $nisn_rules    = 'required|string|size:4|unique:siswa,nisn';
+            $telepon_rules = 'required|numeric|digits_between:10,15|unique:telepon,no_telepon';
+        }
+        return [
                 'nisn' => $nisn_rules,
                 'nama_depan' => 'required|string|max:50',
                 'nama_akhir' => 'required|string|max:50',
                 'tempat_lahir' => 'required|string|max:50',
                 'tanggal_lahir' => 'required|date',
                 'jenis_kelamin' => 'required|in:L,P',
+                'no_telepon' => $telepon_rules,
             ];
-        }
-        
     }
 }

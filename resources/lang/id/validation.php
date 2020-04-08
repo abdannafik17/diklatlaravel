@@ -129,6 +129,12 @@ return [
         'jenis_kelamin' => [
             'required' => 'Jenis kelamin harus diisi',
             'in' => 'Isian Jenis Kelaming harus L dan P'
+        ],
+        'no_telepon' => [
+            'required' => 'No Telepon harus diisi',
+            'numeric' => 'No Telepon harus angka',
+            'unique' => 'No Telepon harus unik',
+            'digits_between' => 'Digit No Telepon Harus 10 - 15'
         ]
     ],
 

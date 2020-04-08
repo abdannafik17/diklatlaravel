@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Model\Telepon;
 
 class Siswa extends Model
 {
@@ -14,4 +15,8 @@ class Siswa extends Model
     ];
 
     protected $dates = ['tanggal_lahir'];
+
+    public function telepon() {
+    	return $this->hasOne('App\Model\Telepon', 'id_siswa');
+    }
 }

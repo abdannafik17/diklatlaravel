@@ -7,6 +7,7 @@ use App\Http\Requests\SiswaRequest;
 use Session;
 
 use App\Model\Siswa;
+use App\Model\Telepon;
 
 class SiswaController extends Controller
 {
@@ -42,15 +43,15 @@ class SiswaController extends Controller
     public function store(SiswaRequest $request)
     {
         $input = $request->all();
-        // $this->validate($request, [
-        //     'nisn' => 'required|string|size:4|unique:siswa,nisn',
-        //     'nama_depan' => 'required|string|max:50',
-        //     'nama_akhir' => 'required|string|max:50',
-        //     'tempat_lahir' => 'required|string|max:50',
-        //     'tanggal_lahir' => 'required|date',
-        //     'jenis_kelamin' => 'required|in:L,P',
-        // ]);
-        Siswa::create($request->all()); 
+        
+        //ini input ke table siswa
+        $siswa = Siswa::create($input); 
+
+        //ini input ke table telepon
+        $telepon = new Telepon;
+        $telepon->no_telepon = $request->input('no_telepon');
+        $siswa->telepon()->save($telepon);
+
         Session::flash('flash_message','Data Siswa dengan NISN '.$request->input('nisn').' Berhasil ditambah');
         return redirect('siswa');
     }
@@ -90,18 +91,15 @@ class SiswaController extends Controller
     public function update(SiswaRequest $request, $id)
     {
         $siswa = Siswa::findOrFail($id);
-        $input = $request->input();
-        
-        // $this->validate($request, [
-        //     'nisn' => 'required|string|size:4|unique:siswa,nisn,'.$request->input('id_siswa').',id_siswa',
-        //     'nama_depan' => 'required|string|max:50',
-        //     'nama_akhir' => 'required|string|max:50',
-        //     'tempat_lahir' => 'required|string|max:50',
-        //     'tanggal_lahir' => 'required|date',
-        //     'jenis_kelamin' => 'required|in:L,P',
-        // ]);
-        
+
+        //simpan ke table siswa
         $siswa->update($request->all());
+
+        //simpan ke table telepon
+        $telepon = $siswa->telepon;
+        $telepon->no_telepon = $request->input('no_telepon');
+        $siswa->telepon()->save($telepon);
+
         Session::flash('flash_message','Data Siswa dengan NISN '.$request->input('nisn').' Berhasil diedit');
         return redirect('siswa');
     }

@@ -45,6 +45,10 @@
                     <th>Jenis Kelamin</th>
                     <td>{{ $siswa->jenis_kelamin }}</td>
                 </tr>
+                <tr>
+                    <th>No Telepon</th>
+                    <td>{{ $siswa->telepon->no_telepon }}</td>
+                </tr>
             </table>
           </div>
         </div>
