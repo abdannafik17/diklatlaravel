@@ -17,29 +17,44 @@
         </div>
           
         <div class="card-body">
-          <form method="post" action="{{ url('siswa/'.$siswa->id_siswa) }}">
+          <form method="post" action="{{ url('siswa/'.$siswa->id) }}">
             {{ csrf_field() }}
             <input type="hidden" name="_method" value="PATCH">
-            <input type="hidden" name="id_siswa" value="{{ $siswa->id_siswa }}">
+            <input type="hidden" name="id" value="{{ $siswa->id }}">
             <div class="form-group col-md-12">
                 <label class="control-label">NISN :</label>
                 <input type="text" name="nisn" class="form-control" style="text-transform: uppercase" placeholder="NISN" value="{{ $siswa->nisn }}" >
+                @if($errors->has('nisn'))
+                  <span style="color:red"> {{ $errors->first('nisn') }} </span>
+                @endif
             </div>
             <div class="form-group col-md-12">
                 <label class="control-label">Nama Depan :</label>
                 <input type="text" name="nama_depan" class="form-control" style="text-transform: uppercase" placeholder="Nama Depan" value="{{ $siswa->nama_depan }}">
+                @if($errors->has('nama_depan'))
+                  <span style="color:red"> {{ $errors->first('nama_depan') }} </span>
+                @endif
             </div>
             <div class="form-group col-md-12">
                 <label class="control-label">Nama Akhir :</label>
                 <input type="text" name="nama_akhir" class="form-control" style="text-transform: uppercase" placeholder="Nama Akhir" value="{{ $siswa->nama_akhir }}">
+                @if($errors->has('nama_akhir'))
+                  <span style="color:red"> {{ $errors->first('nama_akhir') }} </span>
+                @endif
             </div>
             <div class="form-group col-md-12">
                 <label class="control-label">Tempat Lahir :</label>
                 <input type="text" name="tempat_lahir" class="form-control" style="text-transform: uppercase" placeholder="Tempat Lahir" value="{{ $siswa->tempat_lahir }}">
+                @if($errors->has('tempat_lahir'))
+                  <span style="color:red"> {{ $errors->first('tempat_lahir') }} </span>
+                @endif
             </div>
             <div class="form-group col-md-12">
                 <label class="control-label">Tanggal Lahir :</label>
-                <input type="text" name="tanggal_lahir" class="form-control" style="text-transform: uppercase" placeholder="Tanggal Lahir" value="{{ $siswa->tanggal_lahir }}">
+                <input type="text" name="tanggal_lahir" class="form-control" style="text-transform: uppercase" placeholder="Tanggal Lahir" value="{{ $siswa->tanggal_lahir->format('Y-m-d') }}">
+                @if($errors->has('tanggal_lahir'))
+                  <span style="color:red"> {{ $errors->first('tanggal_lahir') }} </span>
+                @endif
             </div>
             <div class="form-group col-md-12">
                 <label class="control-label">Jenis Kelamin :</label>
@@ -56,6 +71,9 @@
                     <option value="P">Perempuan</option>
                   @endif
                 </select>
+                @if($errors->has('jenis_kelamin'))
+                  <span style="color:red"> {{ $errors->first('jenis_kelamin') }} </span>
+                @endif
             </div>
             <div class="form-group col-md-6">
                 <button type="submit" class="btn btn-primary btn-circle"> Simpan </button>

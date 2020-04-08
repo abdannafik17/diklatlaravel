@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
+
 use App\Model\Siswa;
 
 class SiswaController extends Controller
@@ -86,7 +88,19 @@ class SiswaController extends Controller
     public function update(Request $request, $id)
     {
         $siswa = Siswa::findOrFail($id);
+        $input = $request->input();
+        
+        $this->validate($request, [
+            'nisn' => 'required|string|size:4|unique:siswa,nisn,'.$input['id'],
+            'nama_depan' => 'required|string|max:50',
+            'nama_akhir' => 'required|string|max:50',
+            'tempat_lahir' => 'required|string|max:50',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:L,P',
+        ]);
+        
         $siswa->update($request->all());
+        Session::flash('flash_message','Data Siswa dengan NISN '.$request->input('nisn').' Berhasil diedit');
         return redirect('siswa');
     }
 
@@ -98,7 +112,7 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $siswa = Siswa::whereIdSiswa($id)->delete();
+        $siswa = Siswa::whereId($id)->delete();
         return redirect('siswa');
     }
 }

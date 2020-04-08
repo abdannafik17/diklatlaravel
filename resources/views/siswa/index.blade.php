@@ -18,8 +18,14 @@
           <a href="{{ url('siswa/create') }} " >
             <button type="button" class="btn btn-circle btn-danger">Tambah Data</button>
           </a>
+          @if(Session::has('flash_message'))
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {{ Session::get('flash_message') }}
+          </div>
+          @endif
         </div>
-          
+        
         <div class="card-body">
           <div class="table-responsive">            
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -27,8 +33,8 @@
                 <tr>
                   <th>No</th>
                   <th>NISN</th>
-                  <th>Nama Depan Siswa</th>
-                  <th>Tanggal Lahir</th>
+                  <th>Nama Depan</th>
+                  <th>Nama Akhir Lahir</th>
                   <th>Tempat Lahir</th>
                   <th>Tanggal Lahir</th>
                   <th>Jns Kelamim</th>
@@ -38,19 +44,19 @@
               <tbody>
                 @foreach($siswa_list as $anak)
                 <tr>
-                  <td>{{ $anak->id_siswa }}</td>
+                  <td>{{ $anak->id }}</td>
                   <td>{{ $anak->nisn }}</td>
                   <td>{{ $anak->nama_depan }}</td>
                   <td>{{ $anak->nama_akhir }}</td>
                   <td>{{ $anak->tempat_lahir }}</td>
                   <td>{{ $anak->tanggal_lahir->format('d M Y') }}</td>
                   <td>{{ $anak->jenis_kelamin }}</td>
-                  <form method="post" action="{{ url('siswa/'.$anak->id_siswa) }}">
+                  <form method="post" action="{{ url('siswa/'.$anak->id) }}">
                   <td>
-                    <a href="{{ url('siswa/'.$anak->id_siswa) }}" >
+                    <a href="{{ url('siswa/'.$anak->id) }}" >
                       <button type="button" class="btn btn-circle btn-primary">Detail</button>
                     </a>
-                    <a href="{{ url('siswa/'.$anak->id_siswa.'/edit') }}" >
+                    <a href="{{ url('siswa/'.$anak->id.'/edit') }}" >
                       <button type="button" class="btn btn-circle btn-success">Edit</button>
                     </a>
                     
