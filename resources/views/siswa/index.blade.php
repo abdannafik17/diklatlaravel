@@ -39,6 +39,7 @@
                   <th>Tanggal Lahir</th>
                   <th>Jns Kelamin</th>
                   <th>No Telepon</th>
+                  <th>Kelas</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -53,6 +54,7 @@
                   <td>{{ $anak->tanggal_lahir->format('d M Y') }}</td>
                   <td>{{ $anak->jenis_kelamin }}</td>
                   <td>{{ $anak->telepon->no_telepon }}</td>
+                  <td>{{ !empty($anak->kelas->nama_kelas) ? $anak->kelas->nama_kelas : '-' }}</td>
                   <form method="post" action="{{ url('siswa/'.$anak->id_siswa) }}">
                   <td>
                     <a href="{{ url('siswa/'.$anak->id_siswa) }}" >

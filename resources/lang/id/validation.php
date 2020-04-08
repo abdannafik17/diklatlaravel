@@ -135,6 +135,9 @@ return [
             'numeric' => 'No Telepon harus angka',
             'unique' => 'No Telepon harus unik',
             'digits_between' => 'Digit No Telepon Harus 10 - 15'
+        ],
+        'id_kelas' => [
+            'required' => 'Kelas harus diisi',
         ]
     ],
 

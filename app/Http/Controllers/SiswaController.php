@@ -8,6 +8,7 @@ use Session;
 
 use App\Model\Siswa;
 use App\Model\Telepon;
+use App\Model\Kelas;
 
 class SiswaController extends Controller
 {
@@ -31,7 +32,8 @@ class SiswaController extends Controller
     public function create()
     {
         $judul = 'Tambah Data Siswa';
-        return view('siswa.create', compact('judul'));
+        $list_kelas = Kelas::all();
+        return view('siswa.create', compact('judul', 'list_kelas'));
     }
 
     /**
@@ -78,7 +80,8 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
         $judul = 'Edit Data Siswa';
-        return view('siswa.edit', compact('siswa', 'judul'));
+        $list_kelas = Kelas::all();
+        return view('siswa.edit', compact('siswa', 'judul', 'list_kelas'));
     }
 
     /**

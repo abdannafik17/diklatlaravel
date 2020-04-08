@@ -49,6 +49,10 @@
                     <th>No Telepon</th>
                     <td>{{ $siswa->telepon->no_telepon }}</td>
                 </tr>
+                <tr>
+                    <th>Kelas</th>
+                    <td>{{ $siswa->kelas->nama_kelas }}</td>
+                </tr>
             </table>
           </div>
         </div>

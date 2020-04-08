@@ -40,6 +40,7 @@ class SiswaRequest extends FormRequest
                 'tanggal_lahir' => 'required|date',
                 'jenis_kelamin' => 'required|in:L,P',
                 'no_telepon' => $telepon_rules,
+                'id_kelas' => 'required',
             ];
     }
 }
