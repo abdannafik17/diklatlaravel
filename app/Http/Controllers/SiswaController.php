@@ -89,9 +89,9 @@ class SiswaController extends Controller
     {
         $siswa = Siswa::findOrFail($id);
         $input = $request->input();
-        
+        // dd($input);
         $this->validate($request, [
-            'nisn' => 'required|string|size:4|unique:siswa,nisn,'.$input['id'],
+            'nisn' => 'required|string|size:4|unique:siswa,nisn,'.$request->input('id_siswa').',id_siswa',
             'nama_depan' => 'required|string|max:50',
             'nama_akhir' => 'required|string|max:50',
             'tempat_lahir' => 'required|string|max:50',
@@ -112,7 +112,7 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $siswa = Siswa::whereId($id)->delete();
+        $siswa = Siswa::whereIdSiswa($id)->delete();
         return redirect('siswa');
     }
 }

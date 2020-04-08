@@ -17,10 +17,10 @@
         </div>
           
         <div class="card-body">
-          <form method="post" action="{{ url('siswa/'.$siswa->id) }}">
+          <form method="post" action="{{ url('siswa/'.$siswa->id_siswa) }}">
             {{ csrf_field() }}
             <input type="hidden" name="_method" value="PATCH">
-            <input type="hidden" name="id" value="{{ $siswa->id }}">
+            <input type="hidden" name="id_siswa" value="{{ $siswa->id_siswa }}">
             <div class="form-group col-md-12">
                 <label class="control-label">NISN :</label>
                 <input type="text" name="nisn" class="form-control" style="text-transform: uppercase" placeholder="NISN" value="{{ $siswa->nisn }}" >

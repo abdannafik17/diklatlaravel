@@ -44,19 +44,19 @@
               <tbody>
                 @foreach($siswa_list as $anak)
                 <tr>
-                  <td>{{ $anak->id }}</td>
+                  <td>{{ $anak->id_siswa }}</td>
                   <td>{{ $anak->nisn }}</td>
                   <td>{{ $anak->nama_depan }}</td>
                   <td>{{ $anak->nama_akhir }}</td>
                   <td>{{ $anak->tempat_lahir }}</td>
                   <td>{{ $anak->tanggal_lahir->format('d M Y') }}</td>
                   <td>{{ $anak->jenis_kelamin }}</td>
-                  <form method="post" action="{{ url('siswa/'.$anak->id) }}">
+                  <form method="post" action="{{ url('siswa/'.$anak->id_siswa) }}">
                   <td>
-                    <a href="{{ url('siswa/'.$anak->id) }}" >
+                    <a href="{{ url('siswa/'.$anak->id_siswa) }}" >
                       <button type="button" class="btn btn-circle btn-primary">Detail</button>
                     </a>
-                    <a href="{{ url('siswa/'.$anak->id.'/edit') }}" >
+                    <a href="{{ url('siswa/'.$anak->id_siswa.'/edit') }}" >
                       <button type="button" class="btn btn-circle btn-success">Edit</button>
                     </a>
                     
