@@ -28,6 +28,7 @@ class SiswaController extends Controller
         $siswa_list = Siswa::all();
         $jml_siswa = $siswa_list->count();
         return view('siswa.index', compact('siswa_list', 'jml_siswa'));
+        //contoh nambah utk git
     }
 
     /**
