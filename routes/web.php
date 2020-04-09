@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'HomepageController@index');
+// Route::get('/', 'HomepageController@index');
 
 
 // Route::post('siswa', 'SiswaController@store');
@@ -23,6 +23,19 @@ Route::get('/', 'HomepageController@index');
 // Route::get('siswa/{siswa}/edit', 'SiswaController@edit');
 // Route::get('siswa', 'SiswaController@index');
 
-Route::resource('siswa', 'SiswaController');
 
-Route::get('about', 'AboutController@index');
+Route::get('/', 'PageController@index');
+
+
+Route::group(['middleware' => ['auth']], function () {
+	Route::get('/home', 'HomepageController@index')->name('home');
+	Route::resource('siswa', 'SiswaController');
+	Route::get('about', 'AboutController@index');
+});
+
+
+Auth::routes();
+Route::get('logout', 'Auth\LoginController@logout', function () {
+    return abort(404);
+});
+// Route::get('/home', 'HomeController@index')->name('home');
