@@ -80,8 +80,21 @@
                     <option value="{{ $rs->id }}">{{ $rs->nama_kelas }}</option>
                   @endforeach
                 </select>
+                
                 @if($errors->has('id_kelas'))
                   <span style="color:red"> {{ $errors->first('id_kelas') }} </span>
+                @endif
+            </div>
+            <div class="form-group col-md-12">
+                <label class="control-label">Pilih Hobi :</label> <br/>
+                @foreach($list_hobi as $h)
+                  <label>
+                    <input type="checkbox" name="hobi[]" value="{{ $h->id }}"> {{ $h->nama_hobi }}
+                  </label> <br/>
+                @endforeach
+                
+                @if($errors->has('hobi'))
+                  <span style="color:red"> {{ $errors->first('hobi') }} </span>
                 @endif
             </div>
             <div class="form-group col-md-12">

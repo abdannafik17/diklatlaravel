@@ -9,6 +9,7 @@ use Session;
 use App\Model\Siswa;
 use App\Model\Telepon;
 use App\Model\Kelas;
+use App\Model\Hobi;
 
 class SiswaController extends Controller
 {
@@ -33,7 +34,8 @@ class SiswaController extends Controller
     {
         $judul = 'Tambah Data Siswa';
         $list_kelas = Kelas::all();
-        return view('siswa.create', compact('judul', 'list_kelas'));
+        $list_hobi = Hobi::all();
+        return view('siswa.create', compact('judul', 'list_kelas', 'list_hobi'));
     }
 
     /**
@@ -54,6 +56,8 @@ class SiswaController extends Controller
         $telepon->no_telepon = $request->input('no_telepon');
         $siswa->telepon()->save($telepon);
 
+        $siswa->hobi()->attach($request->input('hobi'));
+
         Session::flash('flash_message','Data Siswa dengan NISN '.$request->input('nisn').' Berhasil ditambah');
         return redirect('siswa');
     }
@@ -66,8 +70,9 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        $siswa = Siswa::findOrFail($id); //select * from siswa where id_siswa=$id
-        return view('siswa.show', compact('siswa'));
+        $siswa = Siswa::findOrFail($id);
+        $list_hobi = Hobi::all();
+        return view('siswa.show', compact('siswa', 'siswa_hobi', 'list_hobi'));
     }
 
     /**
@@ -81,7 +86,8 @@ class SiswaController extends Controller
         $siswa = Siswa::findOrFail($id);
         $judul = 'Edit Data Siswa';
         $list_kelas = Kelas::all();
-        return view('siswa.edit', compact('siswa', 'judul', 'list_kelas'));
+        $list_hobi = Hobi::all();
+        return view('siswa.edit', compact('siswa', 'judul', 'list_kelas', 'list_hobi'));
     }
 
     /**
@@ -102,6 +108,10 @@ class SiswaController extends Controller
         $telepon = $siswa->telepon;
         $telepon->no_telepon = $request->input('no_telepon');
         $siswa->telepon()->save($telepon);
+
+        if(!is_null($request->input('hobi'))) {
+            $siswa->hobi()->sync($request->input('hobi'));
+        }
 
         Session::flash('flash_message','Data Siswa dengan NISN '.$request->input('nisn').' Berhasil diedit');
         return redirect('siswa');

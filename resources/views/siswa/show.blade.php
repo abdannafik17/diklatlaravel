@@ -53,6 +53,29 @@
                     <th>Kelas</th>
                     <td>{{ $siswa->kelas->nama_kelas }}</td>
                 </tr>
+                <tr>
+                    <th>Hobi</th>
+                    <td>
+                      @foreach($list_hobi as $lh)
+                        @php
+                          $i = 'true';
+                        @endphp
+
+                        @foreach($siswa->hobi as $h)
+                          @if($lh->id == $h->id)
+                            <label>
+                              {{ $lh->nama_hobi }}
+                            </label>,
+                            @php
+                              $i='false';
+                            @endphp
+                            @break;
+                          @endif
+                        @endforeach
+                        
+                      @endforeach
+                    </td>
+                </tr>
             </table>
           </div>
         </div>

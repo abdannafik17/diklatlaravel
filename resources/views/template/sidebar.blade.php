@@ -13,7 +13,7 @@
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Siwa">
-          <a class="nav-link" href="{{ url('siswa') }}">
+          <a class="nav-link" href="{{ route('siswa.index') }}">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Siswa</span>
           </a>
